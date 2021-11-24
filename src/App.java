@@ -53,10 +53,10 @@ public class App {
                     desc = Integer.parseInt(JOptionPane.showInputDialog(null, "Desconto?"));
 
                     for(int i = 0; i<quant; i++){
-                        if(quantVenda <= estoque[i]){
-                            if(desc >= 0){
-                                if(desc <= 100){
-                                    if(nomeProduto[i].equalsIgnoreCase(venderProduto)){
+                        if(nomeProduto[i].equalsIgnoreCase(venderProduto)){
+                            if(quantVenda <= estoque[i]){
+                                if(desc >= 0){
+                                    if(desc <= 100){
                                         total = precoVenda[i] * quantVenda;
                                         descFinal = (total * desc) / 100;
                                         lucro = total - descFinal;
@@ -75,24 +75,24 @@ public class App {
                                             lucrofinal[i] = lucro + lucrofinal[i];
                                             break;
                                         }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "O desconto não pode ser um número maior que 100!");
+                                        escolha = JOptionPane.NO_OPTION;
+                                        break;
                                     }
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "O desconto não pode ser um número maior que 100!");
+                                } else{
+                                    JOptionPane.showMessageDialog(null, "O desconto não pode ser um número negativo!");
                                     escolha = JOptionPane.NO_OPTION;
                                     break;
                                 }
-                            } else{
-                                JOptionPane.showMessageDialog(null, "O desconto não pode ser um número negativo!");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Estoque insuficiente!\n\n"+
+                                                                    "Produto: " + nomeProduto[i]+ "\n" +
+                                                                    "Preço: R$ " + formatador.format(precoVenda[i])+ "\n" +
+                                                                    "Quantidade em estoque: " + estoque[i]+ "<==");
                                 escolha = JOptionPane.NO_OPTION;
                                 break;
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Estoque insuficiente!\n\n"+
-                                                                "Produto: " + nomeProduto[i]+ "\n" +
-                                                                "Preço: R$ " + formatador.format(precoVenda[i])+ "\n" +
-                                                                "Quantidade em estoque: " + estoque[i]+ "<==");
-                            escolha = JOptionPane.NO_OPTION;
-                            break;
                         }
                     }
                     break;
@@ -104,11 +104,8 @@ public class App {
                             while(!localizarProduto.equalsIgnoreCase(nomeProduto[i])){
                                 if(i<quant){
                                     i++;
-                                    break;
                                 }
                             }
-                            if(localizarProduto.equalsIgnoreCase(nomeProduto[i])){
-
                                 JOptionPane.showMessageDialog(null, "Informações do produto: \n\n"+
                                                                     "Produto: "+nomeProduto[i]+
                                                                     "\nFornecedor: "+fornecedor[i]+
@@ -116,7 +113,6 @@ public class App {
                                                                     "\nQuantidade em estoque: "+estoque[i]);
                     
                                 escolha = JOptionPane.showConfirmDialog(null, "Deseja continuar pesquisando?", "Confirmação", JOptionPane.YES_NO_OPTION);
-                            }
                         }
                     break;
                 case 4:
@@ -127,17 +123,14 @@ public class App {
                         while(!localizarProduto.equalsIgnoreCase(nomeProduto[i])){
                             if(i<quant){
                                 i++;
-                                break;
                             }
                         }
-                        if(localizarProduto.equalsIgnoreCase(nomeProduto[i])){
                             JOptionPane.showMessageDialog(null, "Lucro do produto: \n\n"+
                                                                 "Produto: "+nomeProduto[i]+
                                                                 "\n________________________\n"+
                                                                 "\nLucro gerado: R$"+formatador.format(lucrofinal[i]));
 
                             escolha = JOptionPane.showConfirmDialog(null, "Deseja continuar pesquisando?", "Confirmação", JOptionPane.YES_NO_OPTION);
-                        }
                     }
                     break;
                 case 5:
