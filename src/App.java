@@ -14,7 +14,7 @@ public class App {
                                                                 "4 – Mostrar Lucro \n"+
                                                                 "5 – Sair \n\n"));
     }
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String nomeProduto[] = new String[100];
         String fornecedor[] = new String[100];
         float precoVenda[] = new float[100];
@@ -61,7 +61,7 @@ public class App {
                     desc = Integer.parseInt(JOptionPane.showInputDialog(null, "Desconto?"));
 
                     for(int i = 0; i<quant; i++){
-                        if(quantVenda < estoque[i]){
+                        if(quantVenda <= estoque[i]){
                             if(desc >= 0){
                                 if(desc <= 100){
                                     if(nomeProduto[i].equalsIgnoreCase(venderProduto)){
@@ -81,18 +81,18 @@ public class App {
                                             escolha = JOptionPane.NO_OPTION;
                                             estoque[i] = estoque[i] - quantVenda;
                                             lucrofinal[i] = lucro + lucrofinal[i];
-                                            i = nomeProduto.length;
+                                            break;
                                         }
                                     }
                                 } else {
                                     JOptionPane.showMessageDialog(null, "O desconto não pode ser um número maior que 100!");
                                     escolha = JOptionPane.NO_OPTION;
-                                    i = quant;
+                                    break;
                                 }
                             } else{
                                 JOptionPane.showMessageDialog(null, "O desconto não pode ser um número negativo!");
                                 escolha = JOptionPane.NO_OPTION;
-                                i = quant;
+                                break;
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "Estoque insuficiente!\n\n"+
@@ -100,7 +100,7 @@ public class App {
                                                                 "Preço: R$ " + formatador.format(precoVenda[i])+ "\n" +
                                                                 "Quantidade em estoque: " + estoque[i]+ "<==");
                             escolha = JOptionPane.NO_OPTION;
-                            i = quant;
+                            break;
                         }
                     }
                     break;
