@@ -26,14 +26,6 @@ public class App {
         float lucro;
 
         do{
-            for(int i = 0; i<nomeProduto.length; i++){
-                nomeProduto[i] = nomeProduto[i];
-                fornecedor[i] = fornecedor[i];
-                precoVenda[i] = precoVenda[i];
-                precoCusto[i] = precoCusto[i];
-                estoque[i] = estoque[i];
-            }
-
             String localizarProduto, venderProduto;
             int opcao, quantVenda, desc;
             Float descFinal, total;
@@ -110,7 +102,10 @@ public class App {
                                                                                 "   Digite o nome do produto: ");
                             int i=0;
                             while(!localizarProduto.equalsIgnoreCase(nomeProduto[i])){
-                                i++;
+                                if(i<quant){
+                                    i++;
+                                    break;
+                                }
                             }
                             if(localizarProduto.equalsIgnoreCase(nomeProduto[i])){
 
@@ -130,7 +125,10 @@ public class App {
                                                                             "   Digite o nome do produto: ");
                         int i = 0;
                         while(!localizarProduto.equalsIgnoreCase(nomeProduto[i])){
-                            i++;
+                            if(i<quant){
+                                i++;
+                                break;
+                            }
                         }
                         if(localizarProduto.equalsIgnoreCase(nomeProduto[i])){
                             JOptionPane.showMessageDialog(null, "Lucro do produto: \n\n"+
