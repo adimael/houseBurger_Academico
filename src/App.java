@@ -2,7 +2,7 @@ import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 public class App {
-
+    //Função menu Principal;
     public static int menuPrincipal(){
         
         return Integer.parseInt(JOptionPane.showInputDialog(null, "____________HouseBurger_____________\n"+
@@ -15,26 +15,28 @@ public class App {
                                                                 "5 – Sair \n\n"));
     }
     public static void main(String[] args) {
+        //Arrays
         String nomeProduto[] = new String[100];
         String fornecedor[] = new String[100];
         float precoVenda[] = new float[100];
         float precoCusto[] = new float[100];
         int estoque[] = new int[100];
         float lucrofinal[] = new float[100];
+        //Variaveis
         int quant = 0, escolha = JOptionPane.YES_OPTION;
         DecimalFormat formatador = new DecimalFormat("0.00");
         float lucro;
 
-        do{
+        do{//Laço de repetição para o programa continuar rodando enquanto escolha = YES_OPTION;
             String localizarProduto, venderProduto;
             int opcao, quantVenda, desc;
             Float descFinal, total;
             escolha = JOptionPane.YES_OPTION;
 
-            opcao = menuPrincipal();
+            opcao = menuPrincipal(); //Variavel Opção recebe valor do tipo inteiro da função menu principal;
 
             switch(opcao){
-                case 1:
+                case 1: //Opção de cadastrar produtos;
                     while(escolha == JOptionPane.YES_OPTION){
                         nomeProduto[quant] = JOptionPane.showInputDialog(null, "Nome do produto?");
                         fornecedor[quant] = JOptionPane.showInputDialog(null, "Fornecedor?");
@@ -46,7 +48,7 @@ public class App {
                         escolha = JOptionPane.showConfirmDialog(null, "Deseja continuar cadastrando?", "Confirmação", JOptionPane.YES_NO_OPTION);
                     }
                     break;
-                case 2:
+                case 2://Opção de vender produtos;
                     venderProduto = JOptionPane.showInputDialog(null, " ______Venda de Produto________\n\n"+
                                                                 "Digite o nome do produto para venda: ");
                     quantVenda = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade a ser vendida?"));
@@ -96,7 +98,7 @@ public class App {
                         }
                     }
                     break;
-                case 3:
+                case 3://Opção de consultar produtos;
                         while(escolha == JOptionPane.YES_OPTION){
                             localizarProduto = JOptionPane.showInputDialog(null, " ______Pesquisar Produto________\n\n"+
                                                                                 "   Digite o nome do produto: ");
@@ -115,7 +117,7 @@ public class App {
                                 escolha = JOptionPane.showConfirmDialog(null, "Deseja continuar pesquisando?", "Confirmação", JOptionPane.YES_NO_OPTION);
                         }
                     break;
-                case 4:
+                case 4://Opção de pesquisar produtos;
                     while(escolha == JOptionPane.YES_OPTION){
                         localizarProduto = JOptionPane.showInputDialog(null, " ______Pesquisar Produto________\n\n"+
                                                                             "   Digite o nome do produto: ");
@@ -133,7 +135,7 @@ public class App {
                             escolha = JOptionPane.showConfirmDialog(null, "Deseja continuar pesquisando?", "Confirmação", JOptionPane.YES_NO_OPTION);
                     }
                     break;
-                case 5:
+                case 5://Opção para encerrar a aplicação;
                     System.exit(0);
             }
         }while(escolha == JOptionPane.NO_OPTION);
